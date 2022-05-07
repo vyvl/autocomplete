@@ -5,7 +5,6 @@
   "schemaVersion": "v7",
   "main": "./build/index",
   "types": "./build/index.d.ts",
-  "type": "module",
   "browserslist": [
     "safari >=11"
   ],
@@ -16,7 +15,8 @@
     "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts' --parser typescript",
     "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts' --parser typescript",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gen": "ts-node src/nuspec.ts"
   },
   "fig": {
     "dev": {
