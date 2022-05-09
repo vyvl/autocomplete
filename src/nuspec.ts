@@ -1,4 +1,4 @@
-import completionSpec from './zoxide';
+import completionSpec from './http';
 import Arg = Fig.Arg;
 
 
@@ -32,6 +32,7 @@ ${externBody}
 function getArgsString(spec: Fig.Subcommand):string {
     if(!spec.args) return null;
     const args = singleOrArrayToArray(spec.args);
+    let anyOpt = false;
     return args.map(it => {
         const arg = it as Arg;
         let result = '';
@@ -39,7 +40,8 @@ function getArgsString(spec: Fig.Subcommand):string {
             result = `...`;
         }
         result += `${arg.name}`;
-        if (arg.isOptional) {
+        if (arg.isOptional || anyOpt) {
+            anyOpt = true;
             result += `?`;
         }
         return result;
@@ -60,7 +62,8 @@ function getFlagsString(spec: Fig.Subcommand): string {
             } else {
                 flagName = option.name
             }
-            return `${flagName}\t#${option.description}`;
+            const description = option.description?.split("\n").map(it => it.trim()).filter(it => it).join('.')
+            return `${flagName}\t#${description}`;
         }
     ).join("\n")
 }
