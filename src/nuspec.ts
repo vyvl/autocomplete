@@ -1,3 +1,4 @@
+// import completionSpec in below line and run `ts-node src/nuspec.ts` in root folder
 import completionSpec from './http';
 import Arg = Fig.Arg;
 
