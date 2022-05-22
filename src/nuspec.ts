@@ -50,7 +50,7 @@ function getArgsString(spec: Fig.Subcommand):string {
 }
 
 function getFlagsString(spec: Fig.Subcommand): string {
-    return spec.options.map(
+    return spec.options?.map(
         option => {
             let flagName = ''
             if (option.name instanceof Array) {
